@@ -43,21 +43,19 @@
 
             const username = generateString(10);
             const password = generateString(12);
+            let isError = false;
 
             $("#forgotUsername").click(function () {
                 $(".tryThis").empty();
-                console.log("forgot username clicked????");
                 $(".tryThis").append("<p>Try this username! " + generateString(10));
             });
 
             $("#forgotPassword").click(function () {
                 $(".tryThis").empty();
-                console.log("forgot password clicked????");
                 $(".tryThis").append("<p>Try this password! " + generateString(12));
             });
 
             $("#submit").click(function () {
-                console.log("submit clicked????");
                 let checkPassword = $("#password").val();
                 let checkUsername = $("#username").val();
 
@@ -66,8 +64,13 @@
                     window.location.href = "verifyLogin.html";
                     return;
                 }
-                console.log("worngggggg");
-                $("#errorMessage").append("*Username or password is incorrect");
+                console.log("wrongggggg");
+
+                
+                if(isError === false){
+                    isError = true;
+                    $("#errorMessage").append("*Username or password is incorrect");
+                }
                 return;
             });
 
