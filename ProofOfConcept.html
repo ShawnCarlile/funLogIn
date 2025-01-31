@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC Login</title>
+    <link rel="stylesheet" href="ProofOfConcept.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <div class="header">
+                <h1>Member Login</h1>
+            </div>
+            <div id="errorMessage"></div>
+            <div>
+                <label for="first">Username:</label>
+                <input type="text" id="username" name="first" placeholder="Enter your Username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+            </div>
+            <button type="submit" id="submit"> Submit </button>
+            <div class="forger">
+                <button type="button" id="forgotUsername">Forgot My Username</button>
+                <button type="button" id="forgotPassword">Forgot My Password</button>
+            </div>
+            <div class="tryThis">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#username").val('');
+            $("#password").val('');
+
+            const username = generateString(10);
+            const password = generateString(12);
+
+            $("#forgotUsername").click(function () {
+                $(".tryThis").empty();
+                console.log("forgot username clicked????");
+                $(".tryThis").append("<p>Try this username! " + generateString(10));
+            });
+
+            $("#forgotPassword").click(function () {
+                $(".tryThis").empty();
+                console.log("forgot password clicked????");
+                $(".tryThis").append("<p>Try this password! " + generateString(12));
+            });
+
+            $("#submit").click(function () {
+                console.log("submit clicked????");
+                let checkPassword = $("#password").val();
+                let checkUsername = $("#username").val();
+
+                if ((checkPassword === password) && (checkUsername === username)) {
+                    console.log("good job!!!");
+                    window.location.href = "verifyLogin.html";
+                    return;
+                }
+                console.log("worngggggg");
+                $("#errorMessage").append("*Username or password is incorrect");
+                return;
+            });
+
+            function generateString(length) {
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                let result = '';
+                const charactersLength = characters.length;
+
+                for (let i = 0; i < length; i++) {
+                    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                }
+                return result;
+            }
+
+        });
+
+
+    </script>
+</body>
+
+</html>
